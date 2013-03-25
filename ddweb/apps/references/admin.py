@@ -1,4 +1,4 @@
 from django.contrib import admin
-from ddweb_app.models import Reference
+from ddweb.apps.references.models import Reference
 
 admin.site.register(Reference)

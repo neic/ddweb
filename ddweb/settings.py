@@ -123,7 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'ddweb_app',
+    'ddweb.apps.references',
 )
 
 # A sample logging configuration. The only tangible logging
