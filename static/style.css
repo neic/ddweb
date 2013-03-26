@@ -1,8 +1,7 @@
 body {
     background: #ffffff url('http://danishdecoration.dk/sites/all/themes/zen/zen/bg.gif') repeat-x fixed;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 16px;
 }
 
 #page {
@@ -23,7 +22,7 @@ body {
 #navbar {
     margin: 10px 0 0;
     padding: 0 10px;
-    height: 22px;
+    height: 24px;
     background: #96d99d;
 }
 
@@ -33,9 +32,13 @@ body {
 }
 
 #navbar ul>li {
-    padding: 1px 10px 1px 0;
+    padding: 2px 8px;
     float: left;
     list-style: none;
+}
+
+#navbar ul>li:hover {
+    background: #669966;
 }
 
 #navbar ul>li>a {
@@ -58,12 +61,14 @@ h1 {
     clear: left;
 }
 
-#footer {
-    color: #999999;
-    text-align: center;
-    font-size: 10px;
-}
-
+#footer,
 #footer a {
     color: #999999;
+    text-align: center;
+    font-size: 14px;
+}
+
+#footer img {
+    height: 20px;
+    vertical-align: middle;
 }
