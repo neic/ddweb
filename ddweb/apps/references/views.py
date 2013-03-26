@@ -1,7 +1,7 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 from ddweb.apps.references.models import Reference
 
 def index(request):
     rList = Reference.objects.all()
-    output = rList
-    return HttpResponse(output)
+    context = {'rList': rList}
+    return render(request, 'references.html', context)

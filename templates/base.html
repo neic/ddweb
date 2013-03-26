@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Company | danishdecoration.dk</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link type="text/css" rel="stylesheet" href="../static/style.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style.css" />
   </head>
   <body>
     <div id="page">
@@ -25,6 +25,7 @@
       <div id="content">
         <h1>Welcome</h1>
           <img class="bigimg" alt="Danish Decoration - Break the waves"  src="http://danishdecoration.dk/sites/default/files/pic/dd1s.jpg" />
+        {% block content %}{% endblock %}
         <p>
           Henrik Graahede, Claus Bjørn Hansen and Tina Kjeldgaard are the three Owners of Danish Decoration ApS.
           We started our own company w the management of Danish Interior A/S, decided to cease operations in Denmark.
