@@ -72,3 +72,46 @@ h1 {
     height: 20px;
     vertical-align: middle;
 }
+
+
+h3 {
+    margin: 0;
+}
+
+table {
+    clear: both;
+}
+
+/* References */
+
+.picture {
+    width: 160px;
+    color: #999999;
+    text-align: center;
+    vertical-align: top;
+    font-size: 0.7em;
+}
+
+.shipname {
+    width: 290px;
+}
+
+.owner {
+    width: 385px;
+}
+
+.year {
+    width: 65px;
+    text-align: right;
+}
+
+.details {
+    font-size: 0.7em;
+    vertical-align: top;
+}
+
+.details h4,
+.details p {
+    margin: 8px 0 0;
+}
+

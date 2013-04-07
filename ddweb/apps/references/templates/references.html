@@ -8,6 +8,30 @@
 Our Reference list is built on each our personally experience, as described under “Company”.
 </p>
 {% for r in rList %}
-{{ r }}<br />
+<table cellpadding="1">
+  <tr>
+    <td class="picture" rowspan="3">
+      No image
+    </td>
+    <td class="shipname"><h3>{{ r.ship }}</h3></td>
+    <td class="owner"><h3>{{ r.owner }}</h3></td>
+    <td class="year"><h3>{{ r.year }}</h3></td>
+  </tr>
+  <tr>
+    <td>{{ r.place }}</td>
+    <td>New Building</td>
+  </tr>
+  <tr>
+    <td class="details"><h4>Project Management:</h4>
+      Henrik Graahede
+      <h4>Assistant Project Management:</h4>
+      Tina Kjeldgaard
+    </td>
+    <td class="details" colspan="2">
+      <p>{{ r.description }}</p>
+    </td>
+  </tr>
+</table>
+<hr/>
 {% endfor %}
 {% endblock %}
