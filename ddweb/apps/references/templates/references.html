@@ -7,18 +7,22 @@
 <p>
 Our Reference list is built on each our personally experience, as described under “Company”.
 </p>
-{% for r in rList %}
+{% for reference in references %}
 <table cellpadding="1">
   <tr>
     <td class="picture" rowspan="3">
+      {% if reference.images %}
+      <img src="{{ reference.images.all.0.image.url }}" class="" alt="" />
+      {% else %}
       No image
+      {% endif %}
     </td>
-    <td class="shipname"><h3>{{ r.ship }}</h3></td>
-    <td class="owner"><h3>{{ r.owner }}</h3></td>
-    <td class="year"><h3>{{ r.year }}</h3></td>
+    <td class="shipname"><h3>{{ reference.ship }}</h3></td>
+    <td class="owner"><h3>{{ reference.owner }}</h3></td>
+    <td class="year"><h3>{{ reference.year }}</h3></td>
   </tr>
   <tr>
-    <td>{{ r.place }}</td>
+    <td>{{ reference.place }}</td>
     <td>New Building</td>
   </tr>
   <tr>
@@ -28,7 +32,7 @@ Our Reference list is built on each our personally experience, as described unde
       Tina Kjeldgaard
     </td>
     <td class="details" colspan="2">
-      <p>{{ r.description }}</p>
+      <p>{{ reference.description }}</p>
     </td>
   </tr>
 </table>
