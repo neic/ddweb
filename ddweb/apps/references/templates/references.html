@@ -19,7 +19,7 @@ Our Reference list is built on each our personally experience, as described unde
     <td class="picture" rowspan="3">
       {% if reference.images.all %}
         <a href="" id="{{ reference.year }}">
-          <img src="{{ reference.images.all.0.image.url }}" class="" alt="" />
+          <img src="{{ reference.images.all.0.thumbnail.url }}" class="" alt="" />
         </a>
       {% else %}No image{% endif %}
     </td>

@@ -1,6 +1,8 @@
 import os
 from django.db import models
 from django.utils.text import slugify
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 def file_name(instance, filename):
     sepFilename = os.path.splitext(filename)
@@ -51,3 +53,7 @@ class Reference(models.Model):
 class ReferenceImage(models.Model):
     reference = models.ForeignKey(Reference, related_name = 'images')
     image = models.ImageField(upload_to = file_name)
+    thumbnail = ImageSpecField(image_field = 'image',
+                               processors = [ResizeToFill(160, 120)],
+                               format = 'JPEG',
+                               options = {'quality': 60},)
