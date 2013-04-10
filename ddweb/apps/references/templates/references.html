@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}References{% endblock %} 
+{% block title %}References{% endblock %}
+
+{% block youxview %}{% for reference in references %}{% if reference.images.all %}
+$("#{{ reference.year }}").yoxview({
+images: [{% for referenceImage in reference.images.all %}
+{ media: { src: '{{ referenceImage.image.url }}', title: '' }},{% endfor %}
+]});{% endif %}{% endfor %}{% endblock %}
 
 {% block content %}
 <h1>References</h1>
@@ -11,11 +17,11 @@ Our Reference list is built on each our personally experience, as described unde
 <table cellpadding="1">
   <tr>
     <td class="picture" rowspan="3">
-      {% if reference.images %}
-      <img src="{{ reference.images.all.0.image.url }}" class="" alt="" />
-      {% else %}
-      No image
-      {% endif %}
+      {% if reference.images.all %}
+        <a href="" id="{{ reference.year }}">
+          <img src="{{ reference.images.all.0.image.url }}" class="" alt="" />
+        </a>
+      {% else %}No image{% endif %}
     </td>
     <td class="shipname"><h3>{{ reference.ship }}</h3></td>
     <td class="owner"><h3>{{ reference.owner }}</h3></td>
