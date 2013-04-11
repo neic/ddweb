@@ -12,11 +12,11 @@
           <img src="{{ STATIC_URL }}logo.png" alt="Home" id="logo-image" /></a>
         <div id="navbar">
           <ul>
-            <li><a href="/node/2" class="active">Company</a></li>
-            <li><a href="{% url 'ddweb.apps.news.views.news' %}" >News</a></li>
-            <li><a href="/node/5" >Contact</a></li>
-            <li><a href="{% url 'ddweb.apps.references.views.ongoing' %}" >Ongoing Projects</a></li>
-            <li><a href="{% url 'ddweb.apps.references.views.references' %}" >References</a></li>
+            <li><a href="{% url 'company' %}" class="active">Company</a></li>
+            <li><a href="{% url 'news' %}" >News</a></li>
+            <li><a href="{% url 'contact' %}" >Contact</a></li>
+            <li><a href="{% url 'ongoing' %}" >Ongoing Projects</a></li>
+            <li><a href="{% url 'references' %}" >References</a></li>
           </ul>
         </div> <!-- navbar -->
       </div> <!-- header -->

@@ -136,3 +136,32 @@ table {
 .bodytext p {
     margin: 4px 0 0;
 }
+
+/* Contact */
+
+.left {
+    float: left;
+    width: 35%;
+}
+
+.vcard{
+    width: 100%;
+    min-width: 220px;
+    padding: 5px;
+    margin: 10px 0;
+    background: #E5FFE5;
+}
+
+.label {
+    width: 60px;
+    font-size: 0.7em;
+}
+
+.entry {
+    width: 140px;
+    font-size: 0.7em;
+}
+
+.entry img {
+    height: 13px;
+}

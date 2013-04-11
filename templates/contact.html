@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Company{% endblock title %}
+{% block js %}<script type="text/javascript" src="http://download.skype.com/share/skypebuttons/js/skypeCheck.js"></script>{% endblock js %}
+
+{% block content %}
+<h1>Contact us</h1>
+<img class="bigimg" alt="Danish Decoration - Connection to success."  src="{{ STATIC_URL }}dd2s.jpg" />
+
+<div class="left">
+<table class="vcard" border="0">
+  <tr><td colspan="2"><strong>Office</strong></td></tr>
+  <tr><td colspan="2">Danish Decoration</td></tr>
+  <tr><td colspan="2">Kummerowsvej 5A</td></tr>
+  <tr><td colspan="2">DK-9400 Nørrersundby</td></tr>
+  <tr><td colspan="2">Denmark</td></tr>
+  <tr><td class="label">E-mail:</td><td class="entry"><a href="mailto:info@danishdecoration.dk">info@danishdecoration.dk</a></td></tr>
+</table>
+
+
+<table class="vcard" border="0">
+  <tr><td colspan="2"><strong>Tina Kjeldgaard</strong></td></tr>
+  <tr><td colspan="2">Project Manager</td></tr>
+  <tr><td class="label">Mobile:</td><td class="entry"> +45 30 68 09 76</td></tr>
+  <tr><td class="label">Fax:</td><td class="entry"> +45 98 15 37 03</td></tr>
+  <tr><td class="label">E-mail:</td><td class="entry"><a href="mailto:tik@danishdecoration.dk">tik@danishdecoration.dk</a></td></tr>
+  <tr><td class="label">Skype: </td>
+    <td class="entry"><a href="skype:TIK-DanishDecoration?call" onclick="return skypeCheck();">TIK-DanishDecoration</a> <img src="http://mystatus.skype.com/smallicon/TIK-DanishDecoration" alt="http://mystatus.skype.com/smallicon/TIK-DanishDecoration"/></td>
+  </tr>
+</table>
+
+<table class="vcard" border="0">
+  <tr><td colspan="2"><strong>Henrik Graahede</strong></td></tr>
+  <tr><td colspan="2">Project Manager</td></tr>
+  <tr><td class="label">Mobile:</td><td class="entry"> +45 30 68 09 74</td></tr>
+  <tr><td class="label">Fax:</td><td class="entry"> +45 98 15 37 03</td></tr>
+  <tr><td class="label">E-mail:</td><td class="entry"><a href="mailto:hg@danishdecoration.dk">hg@danishdecoration.dk</a></td></tr>
+  <tr><td class="label">Skype: </td>
+    <td class="entry"><a href="skype:HG-DanishDecoration?call" onclick="return skypeCheck();">HG-DanishDecoration</a> <img src="http://mystatus.skype.com/smallicon/HG-DanishDecoration" alt="http://mystatus.skype.com/smallicon/HG-DanishDecoration"/></td>
+  </tr>
+</table>
+
+<table class="vcard" border="0">
+  <tr><td colspan="2"><strong>Claus B. Hansen</strong></td></tr>
+  <tr><td colspan="2">Project Manager</td></tr>
+  <tr><td class="label">Mobile:</td><td class="entry"> +45 30 68 09 75</td></tr>
+  <tr><td class="label">Fax:</td><td class="entry"> +45 98 15 37 03</td></tr>
+  <tr><td class="label">E-mail:</td><td class="entry"><a href="mailto:cbh@danishdecoration.dk">cbh@danishdecoration.dk</a></td></tr>
+  <tr><td class="label">Skype: </td>
+    <td class="entry"><a href="skype:cbhansen007?call" onclick="return skypeCheck();">CBH-DanishDecoration</a> <img src="http://mystatus.skype.com/smallicon/cbhansen007" alt="http://mystatus.skype.com/smallicon/cbhansen007"/></td>
+  </tr>
+</table>
+
+<table class="vcard" border="0">
+  <tr><td colspan="2"><strong>Amanda K. Christensen</strong></td></tr>
+  <tr><td colspan="2">Assistant</td></tr>
+  <tr><td class="label">Fax:</td><td class="entry"> +45 98 15 37 03</td></tr>
+  <tr><td class="label">E-mail:</td><td class="entry"><a href="mailto:akc@danishdecoration.dk">akc@danishdecoration.dk</a></td></tr>
+</table>
+</div> <!-- left -- >
+{% endblock content%}
