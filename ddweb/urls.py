@@ -8,7 +8,8 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'ddweb.views.home', name='home'),
-    url(r'^$', include('ddweb.apps.references.urls')),
+    url(r'^references/', 'ddweb.apps.references.views.references'),
+    url(r'^ongoing/', 'ddweb.apps.references.views.ongoing'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

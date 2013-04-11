@@ -15,8 +15,8 @@
             <li><a href="/node/2" class="active">Company</a></li>
             <li><a href="/node/3" >News</a></li>
             <li><a href="/node/5" >Contact</a></li>
-            <li><a href="/node/1" >Ongoing Projects</a></li>
-            <li><a href="/node/4" >References</a></li>
+            <li><a href="{% url 'ddweb.apps.references.views.ongoing' %}" >Ongoing Projects</a></li>
+            <li><a href="{% url 'ddweb.apps.references.views.references' %}" >References</a></li>
           </ul>
         </div> <!-- navbar -->
       </div> <!-- header -->
