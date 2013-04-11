@@ -115,3 +115,24 @@ table {
     margin: 8px 0 0;
 }
 
+/* News */
+
+.headline {
+    height: 23px;
+    width: 100%;
+}
+
+.date {
+    height: 13px;
+    font-size: 0.7em;
+    color: #999999;
+}
+
+.bodytext {
+    font-size: 0.7em;
+    vertical-align: top;
+}
+
+.bodytext p {
+    margin: 4px 0 0;
+}
