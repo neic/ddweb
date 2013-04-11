@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>{% block title %}{% endblock %} | danishdecoration.dk</title>
+    <title>{% block title %}{% endblock title%} | danishdecoration.dk</title>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style.css" />
   </head>
   <body>
@@ -21,7 +21,7 @@
         </div> <!-- navbar -->
       </div> <!-- header -->
       <div id="content">
-        {% block content %}{% endblock %}
+        {% block content %}{% endblock content%}
       </div> <!-- content -->
       <p id="footer">
         <a  href="mailto:webmaster@danishdecoration.dk">Contact webmaster</a>
@@ -33,9 +33,6 @@
       </p>
     </div> <!-- page -->
     <script type="text/javascript" src="{{ STATIC_URL }}yoxview/yoxview-init.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){{% block youxview %}{% endblock %}
-      });
-    </script>
+    {% block js %}{% endblock js%}
   </body>
 </html>

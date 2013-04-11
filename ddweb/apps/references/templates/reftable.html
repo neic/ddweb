@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block js %}<script type="text/javascript">
+  $(document).ready(function(){% for reference in references %}{% if reference.images.all %}
+  $("#{{ reference.ship|slugify }}-{{ reference.year|slugify }}").yoxview({
+  images: [{% for referenceImage in reference.images.all %}
+  { media: { src: '{{ referenceImage.image.url }}', title: '' }},{% endfor %}
+  ]});{% endif %}{% endfor %}
+  });
+</script>{% endblock js%}
+
+{% block content %}
+{% for reference in references %}
+<table cellpadding="1">
+  <tr>
+    <td class="picture" rowspan="3">
+      {% if reference.images.all %}
+        <a href="" id="{{ reference.ship|slugify }}-{{ reference.year|slugify }}">
+          <img src="{{ reference.images.all.0.thumbnail.url }}" class="" alt="" />
+        </a>
+      {% else %}No image{% endif %}
+    </td>
+    <td class="shipname"><h3>{{ reference.ship }}</h3></td>
+    <td class="owner"><h3>{{ reference.owner }}</h3></td>
+    <td class="year"><h3>{{ reference.year }}</h3></td>
+  </tr>
+  <tr>
+    <td>{{ reference.place }}</td>
+    <td>New Building</td>
+  </tr>
+  <tr>
+    <td class="details"><h4>Project Management:</h4>
+      Henrik Graahede
+      <h4>Assistant Project Management:</h4>
+      Tina Kjeldgaard
+    </td>
+    <td class="details" colspan="2">
+      <p>{{ reference.description }}</p>
+    </td>
+  </tr>
+</table>
+<hr/>{% endfor %}{% endblock content%}
