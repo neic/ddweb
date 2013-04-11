@@ -126,6 +126,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'ddweb.apps.references',
+    'ddweb.apps.news',
     'imagekit',
 )
 

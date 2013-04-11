@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}News{% endblock title %}
+
+{% block js %}<script type="text/javascript">
+  $(document).ready(function(){% for article in articles %}{% if article.images.all %}
+  $("#{{ article.headline|slugify }}-{{ article.date|slugify }}").yoxview({
+  images: [{% for ArticleImage in article.images.all %}
+  { media: { src: '{{ ArticleImage.image.url }}', title: '' }},{% endfor %}
+  ]});{% endif %}{% endfor %}
+  });
+</script>{% endblock js%}
+
+{% block content %}
+{% for article in articles %}
+<table cellpadding="1">
+  <tr>
+    <td class="picture" rowspan="3">
+      {% if article.images.all %}
+        <a href="" id="{{ article.headline|slugify }}-{{ article.date|slugify }}">
+          <img src="{{ article.images.all.0.thumbnail.url }}" class="" alt="" />
+        </a>
+      {% else %}No image{% endif %}
+    </td>
+    <td class="shipname"><h3>{{ article.headline }}</h3></td>
+  </tr>
+  <tr>
+    <td>{{ article.date }}</td>
+  </tr>
+  <tr>
+    <td class="details" colspan="2">
+      <p>{{ article.description }}</p>
+    </td>
+  </tr>
+</table>
+<hr/>{% endfor %}{% endblock content%}

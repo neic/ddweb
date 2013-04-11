@@ -13,7 +13,7 @@
         <div id="navbar">
           <ul>
             <li><a href="/node/2" class="active">Company</a></li>
-            <li><a href="/node/3" >News</a></li>
+            <li><a href="{% url 'ddweb.apps.news.views.news' %}" >News</a></li>
             <li><a href="/node/5" >Contact</a></li>
             <li><a href="{% url 'ddweb.apps.references.views.ongoing' %}" >Ongoing Projects</a></li>
             <li><a href="{% url 'ddweb.apps.references.views.references' %}" >References</a></li>

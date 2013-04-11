@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'ddweb.views.home', name='home'),
     url(r'^references/', 'ddweb.apps.references.views.references'),
     url(r'^ongoing/', 'ddweb.apps.references.views.ongoing'),
+    url(r'^news/', 'ddweb.apps.news.views.news'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

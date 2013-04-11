@@ -8,7 +8,7 @@ def file_name(instance, filename):
     sepFilename = os.path.splitext(filename)
     newFilename = slugify(sepFilename[0]) + sepFilename[1]
     folder = slugify(instance.reference.ship + '-' + str(instance.reference.year))
-    return '/'.join([folder, newFilename])
+    return '/'.join(['ref', folder, newFilename])
 
 class Reference(models.Model):
     CBH = 'CBH'
