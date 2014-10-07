@@ -41,8 +41,8 @@ class Reference(models.Model):
     onsiteManager = models.CharField(max_length = 3,
                                      choices = MANAGER_CHOICES,
                                      blank = True)
-    ongoing = models.BooleanField()
-    beforeDD = models.BooleanField()
+    ongoing = models.BooleanField(default=True)
+    beforeDD = models.BooleanField(default=False)
 
     def __unicode__(self):
         if self.year:
@@ -53,7 +53,7 @@ class Reference(models.Model):
 class ReferenceImage(models.Model):
     reference = models.ForeignKey(Reference, related_name = 'images')
     image = models.ImageField(upload_to = file_name)
-    thumbnail = ImageSpecField(image_field = 'image',
+    thumbnail = ImageSpecField(source = 'image',
                                processors = [ResizeToFill(160, 120)],
                                format = 'JPEG',
                                options = {'quality': 60},)

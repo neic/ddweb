@@ -21,7 +21,7 @@ class Article(models.Model):
 class ArticleImage(models.Model):
     article = models.ForeignKey(Article, related_name = 'images')
     image = models.ImageField(upload_to = file_name)
-    thumbnail = ImageSpecField(image_field = 'image',
+    thumbnail = ImageSpecField(source = 'image',
                                processors = [ResizeToFill(160, 120)],
                                format = 'JPEG',
                                options = {'quality': 60},)
