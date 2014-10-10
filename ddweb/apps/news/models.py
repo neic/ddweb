@@ -12,8 +12,9 @@ def file_name(instance, filename):
 
 class Article(models.Model):
     headline = models.CharField(max_length = 200)
-    date = models.DateTimeField(auto_now = True)
+    date = models.DateTimeField()
     description = models.TextField(blank = True)
+    author = models.CharField(max_length = 200)
 
     def __unicode__(self):
         return self.headline
