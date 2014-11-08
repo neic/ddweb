@@ -26,3 +26,4 @@ class ArticleImage(models.Model):
                                processors = [ResizeToFill(160, 120)],
                                format = 'JPEG',
                                options = {'quality': 60},)
+    caption = models.CharField(max_length = 200, blank=True)
