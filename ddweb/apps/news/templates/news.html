@@ -3,11 +3,11 @@
 {% block title %}News{% endblock title %}
 
 {% block js %}<script type="text/javascript">
-  $(document).ready(function(){% for article in articles %}{% if article.images.all %}
-  $("#{{ article.headline|slugify }}-{{ article.date|slugify }}").yoxview({
-  images: [{% for ArticleImage in article.images.all %}
-  { media: { src: '{{ ArticleImage.image.url }}', title: '' }},{% endfor %}
-  ]});{% endif %}{% endfor %}
+  $(document).ready(function(){{% for article in articles %}{% if article.images.all %}
+    $("#{{ article.headline|slugify }}-{{ article.date|slugify }}").yoxview({
+      images: [{% for ArticleImage in article.images.all %}
+        { media: { src: '{{ ArticleImage.image.url }}', title: '{{ ArticleImage.caption }}' }},{% endfor %}
+      ]});{% endif %}{% endfor %}
   });
 </script>{% endblock js%}
 
@@ -19,7 +19,7 @@
     <td class="picture" rowspan="3">
       {% if article.images.all %}
         <a href="" id="{{ article.headline|slugify }}-{{ article.date|slugify }}">
-          <img src="{{ article.images.all.0.thumbnail.url }}" class="" alt="" />
+          <img src="{{ article.images.all.0.thumbnail.url }}" class="" alt="{{ article.images.all.0.caption }}" />
         </a>
       {% else %}No image{% endif %}
     </td>
