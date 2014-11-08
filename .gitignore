@@ -4,5 +4,9 @@
 *.sqlite
 local_settings.py
 
+*.csv
+
 media/
 staticr/
+
+.DS_Store
