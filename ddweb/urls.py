@@ -14,7 +14,9 @@ urlpatterns = patterns('',
                        url(r'^contact/', TemplateView.as_view(template_name="contact.html"), name = 'contact'),
                        url(r'^ongoing/', 'ddweb.apps.references.views.ongoing', name = 'ongoing'),
                        url(r'^references/', 'ddweb.apps.references.views.references', name = 'references'),
-    
+                       url(r'upload/', 'ddweb.apps.news.views.upload', name = 'jfu_upload' ),
+                       url( r'^delete/(?P<pk>\d+)$', 'ddweb.apps.news.views.upload_delete', name = 'jfu_delete' ),
+                       url(r'uploadf/(?P<article_id>\w+)', 'ddweb.apps.news.views.newsImgUpload', name = 'uploadform' ),
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

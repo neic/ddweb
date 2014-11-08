@@ -128,6 +128,7 @@ INSTALLED_APPS = (
     'ddweb.apps.references',
     'ddweb.apps.news',
     'imagekit',
+    'jfu',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -161,3 +162,9 @@ LOGGING = {
 
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.request',
+    'django.core.context_processors.static',
+)
