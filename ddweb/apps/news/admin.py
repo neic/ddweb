@@ -3,19 +3,11 @@ from django.contrib import admin
 from django.db import models
 from ddweb.apps.news.models import Article, ArticleImage
 
-class ArticleImageForm(forms.ModelForm):
-    class Meta:
-        model = ArticleImage
-        fields = ['image', 'caption']
-        widgets = {
-        }
-
-class ArticleImageInline(admin.TabularInline):
-    model = ArticleImage
-    form = ArticleImageForm
-    extra = 1
-
 class ArticleAdmin(admin.ModelAdmin):
-    inlines = [ArticleImageInline]
+    list_display = ('headline', 'date', 'description', 'author', 'image_admin_url')
+
+    def image_admin_url(self, obj):
+        return '<a href="/news/uploadf/%s">Upload images</a>' % obj.id
+    image_admin_url.allow_tags = True
 
 admin.site.register(Article, ArticleAdmin)
