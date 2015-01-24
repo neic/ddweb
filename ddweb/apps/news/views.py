@@ -1,5 +1,6 @@
 import os
 from django.conf import settings
+from django.contrib.auth.decorators import permission_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
@@ -13,12 +14,14 @@ def news(request):
     context = {'articles': articles}
     return render(request, 'news.html', context)
 
+@permission_required('news.add_articleimage')
 def newsImgUpload(request, article_id):
     article = get_object_or_404(Article, id=article_id)
     context = {'article': article_id}
     return render(request, 'news-img-upload.html', context)
 
 @require_POST
+@permission_required('news.add_articleimage', raise_exception=True)
 def upload(request):
 
     # The assumption here is that jQuery File Upload
@@ -47,6 +50,7 @@ def upload(request):
     return UploadResponse(request, file_dict)
 
 @require_POST
+@permission_required('news.add_articleimage', raise_exception=True)
 def upload_delete( request, pk ):
     success = True
     try:
