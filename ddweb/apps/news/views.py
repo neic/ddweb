@@ -17,7 +17,8 @@ def news(request):
 @permission_required('news.add_articleimage')
 def newsImgUpload(request, article_id):
     article = get_object_or_404(Article, id=article_id)
-    context = {'article': article_id}
+    context = {'article_id' : article_id,
+               'article_name' : str(article) }
     return render(request, 'news-img-upload.html', context)
 
 @require_POST
@@ -29,9 +30,9 @@ def upload(request):
     # If multiple files can be uploaded simulatenously,
     # 'file' may be a list of files.
     image = upload_receive(request)
-    article2 = request.POST['article']
-    article3 = get_object_or_404(Article, id=article2)
-    instance = ArticleImage(image = image, article = article3)
+    article_id = request.POST['article_id']
+    article = get_object_or_404(Article, id=article_id)
+    instance = ArticleImage(image = image, article = article)
     instance.save()
 
     basename = os.path.basename(instance.image.path)
