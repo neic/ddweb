@@ -11,19 +11,6 @@ def file_name(instance, filename):
     return '/'.join(['ref', folder, newFilename])
 
 class Reference(models.Model):
-    CBH = 'CBH'
-    TIK = 'TIK'
-    HG = 'HG'
-    CBHTIK = 'CBT'
-    TIKHG = 'TIH'
-    MANAGER_CHOICES = (
-        (CBH, 'Claus B. Hansen'),
-        (TIK, 'Tina Kjeldgaard'),
-        (HG, 'Henrik Graahede'),
-        (CBHTIK, 'Claus B. Hansen / Tina Kjeldaard'),
-        (TIKHG, 'Tina Kjeldgaard / Henrik Graahede')
-    )
-
     ship = models.CharField(max_length = 200)
     owner = models.CharField(max_length = 200)
     place = models.CharField(max_length = 200)
@@ -32,15 +19,6 @@ class Reference(models.Model):
                                         default = 'r')
     year = models.PositiveIntegerField(blank = True, null=True)
     description = models.TextField(blank = True)
-    projectManager = models.CharField(max_length = 3,
-                                      choices = MANAGER_CHOICES,
-                                      blank = True)
-    projectAssistant = models.CharField(max_length = 3,
-                                        choices = MANAGER_CHOICES,
-                                        blank = True)
-    onsiteManager = models.CharField(max_length = 3,
-                                     choices = MANAGER_CHOICES,
-                                     blank = True)
     ongoing = models.BooleanField(default=True)
     beforeDD = models.BooleanField(default=False)
 
