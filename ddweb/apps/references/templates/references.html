@@ -1,10 +1,121 @@
-{% extends 'reftable.html' %}
+{% extends 'base.html' %}
+{% load imagekit %}
+
+{% block js %}<script type="text/javascript">
+  $(document).ready(function() { {% for reference in references %}{% if reference.images.all %}
+  $("#{{ reference.ship|slugify }}-{{ reference.year|slugify }}").yoxview({
+  images: [{% for referenceImage in reference.images.all %}
+  { media: { src: '{{ referenceImage.image.url }}', title: '' }},{% endfor %}
+  ]});{% endif %}{% endfor %}
+  });
+</script>{% endblock js%}
+
 {% block title %}References{% endblock title%}
 
 {% block content %}
-<h1>References</h1>
-<img class="bigimg" alt="Danish Decoration - Connection to Success."  src="{{ STATIC_URL }}dd2s.jpg" />
 <p>
-Our Reference list is built on each our personally experience, as described under “Company”.
+  The company is comparatively young, but the people have more than 25
+  years of experience within the industry. We have worked on prominent
+  project before and after the founding of this company.
 </p>
-{{ block.super }}{% endblock content%}
+<div class="page-header">
+  <h2>Ongoing Project</h2>
+</div>
+
+{% for project in ongoing %}
+<div class="row">
+  <div class="col-sm-9">
+    <div class="row">
+      <div class="col-xs-9 col-sm-6">
+        <h4>{{ project.ship }}</h4>
+      </div>
+      <div class="col-xs-3 col-sm-2 col-sm-push-4 text-right">
+        <h4>{{ project.year }}</h4>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-sm-pull-2">
+        <h5>{{ project.owner }}</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <p class="small">{{ project.place }}</p>
+      </div>
+      <div class="col-xs-6 text-right">
+        <p class="small">New Building</p>
+      </div>
+    </div>
+    <p>{{ project.description }}</p>
+  </div>
+  <div class="col-xs-12 col-sm-3 vertical-align">
+    {% if project.images.all %}
+    <a href="" id="{{ project.ship|slugify }}-{{ project.year|slugify }}">
+      {% thumbnail '262x262' project.images.all.0.image crop=0 -- class="img-responsive center-block" %}
+    </a>
+    {% else %}<p class="text-center  small">No images</p>{% endif %}
+  </div>
+</div>
+<hr />
+{% endfor %}
+
+
+
+<div class="page-header">
+  <h2>References</h2>
+</div>
+<p>Project made in Danish Decoration.</p>
+{% for project in references %}
+<div class="row">
+  <div class="col-sm-9">
+    <div class="row">
+      <div class="col-xs-9 col-sm-6">
+        <h4>{{ project.ship }}</h4>
+      </div>
+      <div class="col-xs-3 col-sm-2 col-sm-push-4 text-right">
+        <h4>{{ project.year }}</h4>
+      </div>
+      <div class="col-xs-12 col-sm-4 col-sm-pull-2">
+        <h5>{{ project.owner }}</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <p class="small">{{ project.place }}</p>
+      </div>
+      <div class="col-xs-6 text-right">
+        <p class="small">New Building</p>
+      </div>
+    </div>
+    <p>{{ project.description }}</p>
+  </div>
+  <div class="col-xs-12 col-sm-3 vertical-align">
+    {% if project.images.all %}
+    <a href="" id="{{ project.ship|slugify }}-{{ project.year|slugify }}">
+      {% thumbnail '262x262' project.images.all.0.image crop=0 -- class="img-responsive center-block" %}
+    </a>
+    {% else %}<p class="text-center  small">No images</p>{% endif %}
+  </div>
+</div>
+<hr />
+{% endfor %}
+
+<div class="page-header">
+  <h2>Personal References</h2>
+</div>
+<p>Personal references from before Danish Decoration.</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Ship</th>
+      <th>Owner</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for project in before %}
+    <tr> <td>{{ project.ship }}</td><td>{{ project.owner }}</td><td>{{ project.year }}</td> </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock content%}
