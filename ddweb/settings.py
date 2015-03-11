@@ -82,6 +82,8 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+    'compressor.finders.CompressorFinder',
+    'less.finders.LessFinder',
 )
 
 # Make this unique, and don't share it with anybody.
@@ -118,6 +120,12 @@ TEMPLATE_DIRS = (
     "templates",
 )
 
+COMPRESS_PRECOMPILERS = (
+   ('text/less', 'lessc "{infile}" "{outfile}"'),
+)
+
+COMPRESS_ENABLED = True
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -131,6 +139,8 @@ INSTALLED_APPS = (
     'ddweb.apps.news',
     'imagekit',
     'jfu',
+    'compressor',
+    'less',
 )
 
 # A sample logging configuration. The only tangible logging
