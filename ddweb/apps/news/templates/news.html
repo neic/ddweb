@@ -1,36 +1,35 @@
 {% extends 'base.html' %}
+{% load imagekit %}
 
 {% block title %}News{% endblock title %}
 
 {% block js %}<script type="text/javascript">
   $(document).ready(function(){{% for article in articles %}{% if article.images.all %}
-    $("#{{ article.headline|slugify }}-{{ article.date|slugify }}").yoxview({
-      images: [{% for ArticleImage in article.images.all %}
-        { media: { src: '{{ ArticleImage.image.url }}', title: '{{ ArticleImage.caption }}' }},{% endfor %}
-      ]});{% endif %}{% endfor %}
+  $("#{{ article.headline|slugify }}-{{ article.date|slugify }}").yoxview({
+  images: [{% for ArticleImage in article.images.all %}
+  { media: { src: '{{ ArticleImage.image.url }}', title: '{{ ArticleImage.caption }}' }},{% endfor %}
+  ]});{% endif %}{% endfor %}
   });
 </script>{% endblock js%}
 
 {% block content %}
 {% for article in articles %}
-<table cellpadding="1">
-  <tr>
-    <td class="headline"><h3>{{ article.headline }}</h3></td>
-    <td class="picture" rowspan="3">
-      {% if article.images.all %}
-        <a href="" id="{{ article.headline|slugify }}-{{ article.date|slugify }}">
-          <img src="{{ article.images.all.0.thumbnail.url }}" class="" alt="{{ article.images.all.0.caption }}" />
-        </a>
-      {% else %}No image{% endif %}
-    </td>
-  </tr>
-  <tr>
-    <td class="date">{{ article.date }}</td>
-  </tr>
-  <tr>
-    <td class="bodytext">
-      <p>{{ article.description }}</p>
-    </td>
-  </tr>
-</table>
-<hr/>{% endfor %}{% endblock content%}
+<div class="row">
+  <div class="col-sm-12">
+    <h3>{{ article.headline }}</h3>
+  </div>
+  <div class="col-sm-9 col-md-7">
+    <h6> {{ article.date }}</h6>
+    <p>{{ article.description }}</p>
+  </div>
+  <div class="col-sm-3 col-md-5 text-center">
+    {% if article.images.all %}
+    <a href="" id="{{ article.headline|slugify }}-{{ article.date|slugify }}">
+      {% thumbnail '457x400' article.images.all.0.image crop=0 -- class="img-responsive center-block" %}
+    </a>
+    {% else %}No image{% endif %}
+  </div>
+</div>
+<hr/>
+{% endfor %}
+{% endblock content%}
