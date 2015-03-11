@@ -53,7 +53,3 @@ class Reference(models.Model):
 class ReferenceImage(models.Model):
     reference = models.ForeignKey(Reference, related_name = 'images')
     image = models.ImageField(upload_to = file_name)
-    thumbnail = ImageSpecField(source = 'image',
-                               processors = [ResizeToFill(160, 120)],
-                               format = 'JPEG',
-                               options = {'quality': 60},)
