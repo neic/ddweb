@@ -2,7 +2,12 @@
 {% load imagekit %}
 
 {% block js %}<script type="text/javascript">
-  $(document).ready(function() { {% for reference in references %}{% if reference.images.all %}
+  $(document).ready(function() { {% for reference in ongoing %}{% if reference.images.all %}
+  $("#{{ reference.ship|slugify }}-{{ reference.year|slugify }}").yoxview({
+  images: [{% for referenceImage in reference.images.all %}
+  { media: { src: '{{ referenceImage.image.url }}', title: '' }},{% endfor %}
+  ]});{% endif %}{% endfor %}
+  {% for reference in references %}{% if reference.images.all %}
   $("#{{ reference.ship|slugify }}-{{ reference.year|slugify }}").yoxview({
   images: [{% for referenceImage in reference.images.all %}
   { media: { src: '{{ referenceImage.image.url }}', title: '' }},{% endfor %}

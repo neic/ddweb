@@ -19,7 +19,7 @@ urlpatterns = patterns('',
                            TemplateView.as_view(template_name="contact.html"),
                            name = 'contact'),
                        url(r'^references/',
-                           'ddweb.apps.references.views.references',
+                           include('ddweb.apps.references.urls'),
                            name = 'references'),
 
     # Uncomment the admin/doc line below to enable admin documentation:

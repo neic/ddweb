@@ -1,0 +1,17 @@
+{% extends 'jfu/upload_form.html' %}
+
+{% block JS_INIT %}
+
+        $('#fileupload').fileupload({
+
+            formData: [
+                { name: "csrfmiddlewaretoken", value: "{{ csrf_token }}" },
+                { name: "reference_id", value: "{{ reference_id }}" }
+            ],
+
+            {% block JS_OPTS %}
+              autoUpload: true,
+            {% endblock %}
+
+        });
+{% endblock JS_INIT %}

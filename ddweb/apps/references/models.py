@@ -1,8 +1,6 @@
 import os
 from django.db import models
 from django.utils.text import slugify
-from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
 
 def file_name(instance, filename):
     sepFilename = os.path.splitext(filename)

@@ -1,11 +1,11 @@
 from django.contrib import admin
 from ddweb.apps.references.models import Reference, ReferenceImage
 
-class ReferenceImageInline(admin.TabularInline):
-    model = ReferenceImage
-    extra = 3
-
 class ReferenceAdmin(admin.ModelAdmin):
-    inlines = [ReferenceImageInline]
+    list_display = ('ship', 'year', 'description', 'ongoing', 'beforeDD', 'image_admin_url')
+
+    def image_admin_url(self, obj):
+        return '<a href="/references/uploadf/%s">Upload images</a>' % obj.id
+    image_admin_url.allow_tags = True
 
 admin.site.register(Reference, ReferenceAdmin)
