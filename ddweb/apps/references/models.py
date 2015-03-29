@@ -17,8 +17,11 @@ class Reference(models.Model):
                                         default = 'r')
     year = models.PositiveIntegerField(blank = True, null=True)
     description = models.TextField(blank = True)
-    ongoing = models.BooleanField(default=True)
-    beforeDD = models.BooleanField(default=False)
+    ongoing = models.BooleanField(default = True)
+    beforeDD = models.BooleanField(default = False)
+
+    class Meta:
+        ordering = ['-year', '-id']
 
     def __unicode__(self):
         if self.year:
