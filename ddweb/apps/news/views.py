@@ -4,15 +4,26 @@ from django.contrib.auth.decorators import permission_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.views.generic.dates import YearArchiveView, ArchiveIndexView
 from django.views.decorators.http import require_POST
 from jfu.http import upload_receive, UploadResponse, JFUResponse
 
 from ddweb.apps.news.models import Article, ArticleImage
 
-def news(request):
-    articles = Article.objects.all()
-    context = {'articles': articles}
-    return render(request, 'news.html', context)
+class NewsLatest(ArchiveIndexView):
+    inner_q = Article.objects.all().values('pk')[0:20]
+    queryset = Article.objects.filter(pk__in=inner_q)
+    date_field = "date"
+    make_object_list = True
+    context_object_name = "articles"
+    template_name='news.html'
+
+class NewsArchive(YearArchiveView):
+    queryset = Article.objects.all()
+    date_field = "date"
+    make_object_list = True
+    context_object_name = "articles"
+    template_name='news.html'
 
 @permission_required('news.add_articleimage')
 def newsImgUpload(request, article_id):

@@ -32,4 +32,14 @@
 </div>
 <hr/>
 {% endfor %}
+<p>
+Previous news:
+{% if previous_year %}
+<a href="/news/{{ previous_year|date:"Y" }}">{{ previous_year|date:"Y" }}</a>
+{% elif not year %}
+<a href="/news/{{ date_list.last|date:"Y" }}">{{ date_list.last|date:"Y" }}</a>
+{% else %}
+None
+{% endif %}
+</p>
 {% endblock content%}

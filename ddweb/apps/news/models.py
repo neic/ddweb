@@ -16,6 +16,9 @@ class Article(models.Model):
     description = models.TextField(blank = True)
     author = models.CharField(max_length = 200)
 
+    class Meta:
+        ordering = ['-date']
+
     def __unicode__(self):
         return self.headline
 
