@@ -1,7 +1,9 @@
 # Django settings for ddweb project.
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import os
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 ADMINS = (
     ('Mathias Dannesbo', 'neic@neic.dk'),
@@ -9,18 +11,6 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'ddweb.sqlite',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
-    }
-}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -86,8 +76,6 @@ STATICFILES_FINDERS = (
     'less.finders.LessFinder',
 )
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = '#183q$5ybq+82c@!zfk+zpg2!fj&ioo_@m8atv!ff2kd9%e9jx'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -126,22 +114,32 @@ COMPRESS_PRECOMPILERS = (
 
 COMPRESS_ENABLED = True
 
-INSTALLED_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+
+# Application definition
+DEFAULT_APPS = [
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'ddweb.apps.references',
-    'ddweb.apps.news',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.messages',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.staticfiles',
+]
+
+THIRD_PARTY_APPS = [
+    'compressor',
     'imagekit',
     'jfu',
-    'compressor',
     'less',
-)
+]
+
+LOCAL_APPS = [
+    'ddweb.apps.news',
+    'ddweb.apps.references',
+]
+
+INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
