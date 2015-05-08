@@ -3,6 +3,11 @@ from base import *
 DEBUG = False
 TEMPLATE_DEBUG = False
 
+ADMINS = (
+    ('Mathias Dannesbo', 'webmaster@danishdecoration.dk'),
+)
+MANAGERS = ADMINS
+
 # Generate using pwgen -sy 50 1
 SECRET_KEY = '...'
 
