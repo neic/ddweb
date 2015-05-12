@@ -2,15 +2,15 @@
 {% load imagekit %}
 
 {% block js %}<script type="text/javascript">
-  $(document).ready(function() { {% for reference in ongoing %}{% if reference.images.all %}
-  $("#{{ reference.ship|slugify }}-{{ reference.year|slugify }}").yoxview({
-  images: [{% for referenceImage in reference.images.all %}
-  { media: { src: '{{ referenceImage.image.url }}', title: '' }},{% endfor %}
+  $(document).ready(function() { {% for project in ongoing %}{% if project.images.all %}
+  $("#{{ project.ship|slugify }}-{{ project.year|slugify }}").yoxview({
+  images: [{% for Image in project.images.all %}
+  { media: { src: '{{ Image.image.url }}', title: '' }},{% endfor %}
   ]});{% endif %}{% endfor %}
-  {% for reference in references %}{% if reference.images.all %}
-  $("#{{ reference.ship|slugify }}-{{ reference.year|slugify }}").yoxview({
-  images: [{% for referenceImage in reference.images.all %}
-  { media: { src: '{{ referenceImage.image.url }}', title: '' }},{% endfor %}
+  {% for project in references %}{% if project.images.all %}
+  $("#{{ project.ship|slugify }}-{{ project.year|slugify }}").yoxview({
+  images: [{% for Image in project.images.all %}
+  { media: { src: '{{ Image.image.url }}', title: '' }},{% endfor %}
   ]});{% endif %}{% endfor %}
   });
 </script>{% endblock js%}

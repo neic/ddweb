@@ -1,6 +1,8 @@
 import os
+from django.contrib.contenttypes import generic
 from django.db import models
 from django.utils.text import slugify
+from ddweb.apps.images.models import Image
 
 def file_name(instance, filename):
     sepFilename = os.path.splitext(filename)
@@ -20,6 +22,8 @@ class Reference(models.Model):
     ongoing = models.BooleanField(default = True)
     beforeDD = models.BooleanField(default = False)
 
+    images = generic.GenericRelation(Image)
+
     class Meta:
         ordering = ['-year', '-id']
 
@@ -28,7 +32,3 @@ class Reference(models.Model):
             return self.ship + " " + str(self.year)
         else:
             return self.ship
-
-class ReferenceImage(models.Model):
-    reference = models.ForeignKey(Reference, related_name = 'images')
-    image = models.ImageField(upload_to = file_name)
