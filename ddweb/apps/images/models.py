@@ -3,7 +3,6 @@ from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.text import slugify
-from imagekit.models import ImageSpecField
 
 def file_name(instance, filename):
     sepFilename = os.path.splitext(filename)
@@ -17,5 +16,5 @@ class Image(models.Model):
     object_id = models.PositiveIntegerField()
     associatedObject = generic.GenericForeignKey('content_type', 'object_id')
 
-    image = models.ImageField(upload_to = file_name)
-    caption = models.CharField(max_length = 200, blank=True)
+    image = models.ImageField(upload_to=file_name)
+    caption = models.CharField(max_length=200, blank=True)

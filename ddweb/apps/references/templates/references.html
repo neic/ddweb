@@ -7,7 +7,7 @@
   images: [{% for Image in project.images.all %}
   { media: { src: '{{ Image.image.url }}', title: '' }},{% endfor %}
   ]});{% endif %}{% endfor %}
-  {% for project in references %}{% if project.images.all %}
+  {% for project in finished %}{% if project.images.all %}
   $("#{{ project.ship|slugify }}-{{ project.year|slugify }}").yoxview({
   images: [{% for Image in project.images.all %}
   { media: { src: '{{ Image.image.url }}', title: '' }},{% endfor %}
@@ -68,7 +68,7 @@
   <h2>References</h2>
 </div>
 <p>Project made in Danish Decoration.</p>
-{% for project in references %}
+{% for project in finished %}
 <div class="row">
   <div class="col-sm-9">
     <div class="row">

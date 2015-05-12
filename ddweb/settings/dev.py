@@ -1,4 +1,5 @@
-from base import *
+import os
+from base import * # pylint: disable=wildcard-import,unused-wildcard-import
 
 DEBUG = True
 TEMPLATE_DEBUG = True

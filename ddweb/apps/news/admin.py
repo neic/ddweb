@@ -1,6 +1,4 @@
-from django import forms
 from django.contrib import admin
-from django.db import models
 from ddweb.apps.news.models import Article
 
 class ArticleAdmin(admin.ModelAdmin):
