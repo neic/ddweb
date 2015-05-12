@@ -1,8 +1,9 @@
 import os
+from django.contrib.contenttypes import generic
 from django.db import models
 from django.utils.text import slugify
-from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
+
+from ddweb.apps.images.models import Image
 
 def file_name(instance, filename):
     sepFilename = os.path.splitext(filename)
@@ -16,13 +17,10 @@ class Article(models.Model):
     description = models.TextField(blank = True)
     author = models.CharField(max_length = 200)
 
+    images = generic.GenericRelation(Image)
+
     class Meta:
         ordering = ['-date']
 
     def __unicode__(self):
         return self.headline
-
-class ArticleImage(models.Model):
-    article = models.ForeignKey(Article, related_name = 'images')
-    image = models.ImageField(upload_to = file_name)
-    caption = models.CharField(max_length = 200, blank=True)
