@@ -10,7 +10,7 @@ from jfu.http import upload_receive, UploadResponse, JFUResponse
 
 from ddweb.apps.images.models import Image
 
-@permission_required('news.add_articleimage')
+@permission_required('image.add_image')
 def uploadForm(request, content_type, object_id):
     ct = ContentType.objects.get(model = content_type)
     associatedObject = ct.get_object_for_this_type(pk=object_id)
@@ -20,7 +20,7 @@ def uploadForm(request, content_type, object_id):
     return render(request, 'upload.html', context)
 
 @require_POST
-@permission_required('news.add_articleimage', raise_exception=True)
+@permission_required('image.add_image', raise_exception=True)
 def upload(request):
     # The assumption here is that jQuery File Upload
     # has been configured to send files one at a time.
@@ -47,7 +47,7 @@ def upload(request):
     return UploadResponse(request, file_dict)
 
 @require_POST
-@permission_required('news.add_articleimage', raise_exception=True)
+@permission_required('image.delete_image', raise_exception=True)
 def upload_delete( request, pk ):
     success = True
     try:
