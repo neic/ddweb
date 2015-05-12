@@ -23,7 +23,6 @@ THIRD_PARTY_APPS = [
     'compressor',
     'imagekit',
     'jfu',
-    'less',
 ]
 
 LOCAL_APPS = [
