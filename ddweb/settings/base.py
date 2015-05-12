@@ -29,6 +29,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'ddweb.apps.news',
     'ddweb.apps.references',
+    'ddweb.apps.images'
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS

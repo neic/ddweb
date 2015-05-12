@@ -21,6 +21,9 @@ urlpatterns = patterns('',
                        url(r'^references/',
                            include('ddweb.apps.references.urls'),
                            name = 'references'),
+                       url(r'^images/',
+                           include('ddweb.apps.images.urls'),
+                           name = 'images'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
