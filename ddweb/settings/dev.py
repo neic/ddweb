@@ -16,7 +16,3 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, '..', 'ddweb.sqlite'),
     }
 }
-
-
-# Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'ddweb.wsgi.application'
