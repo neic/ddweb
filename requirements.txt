@@ -5,3 +5,4 @@ django-imagekit>=3.0
 django-jfu>=2.0.9
 django-compressor>=1.5
 django-less>=0.7.2
+mysql-python>=1.2.2
