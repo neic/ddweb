@@ -10,3 +10,5 @@ media/
 staticr/
 
 .DS_Store
+
+venv/
