@@ -22,6 +22,7 @@ DEFAULT_APPS = [
 THIRD_PARTY_APPS = [
     'compressor',
     'imagekit',
+    'bootstrap3',
     'jfu',
 ]
 
@@ -103,6 +104,23 @@ COMPRESS_PRECOMPILERS = (
 
 COMPRESS_ENABLED = True
 
+
+# Bootstrap3
+# ----------
+
+BOOTSTRAP3 = {
+    # The base_url is the default from django-bootstrap3. It is included here
+    # so the version can follow the version of the git-submodule of bootstrap
+    # located at static-src/bootstrap.
+
+    # The javascript is loaded based on the base_url. Currently from a CDN.
+    'base_url': '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/',
+
+    # The css\less is from static-src/bootstrap via static-src/bootstrap.less.
+    # This way it is possible to customize the css\less, without all the
+    # dependencies need to compile the whole bootstrap.
+    'css_url': STATIC_URL + 'bootstrap.less',
+}
 
 # Templates
 # ---------
