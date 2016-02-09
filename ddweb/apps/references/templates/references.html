@@ -47,7 +47,7 @@
         <p class="small">{{ project.place }}</p>
       </div>
       <div class="col-xs-6 text-right">
-        <p class="small">New Building</p>
+        <p class="small">{{ project.get_constructionType_display }}</p>
       </div>
     </div>
     <p>{{ project.description }}</p>
@@ -87,7 +87,7 @@
         <p class="small">{{ project.place }}</p>
       </div>
       <div class="col-xs-6 text-right">
-        <p class="small">New Building</p>
+        <p class="small">{{ project.get_constructionType_display }}</p>
       </div>
     </div>
     <p>{{ project.description }}</p>
