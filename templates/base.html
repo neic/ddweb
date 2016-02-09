@@ -56,8 +56,8 @@
     </nav>
     {% bootstrap_javascript jquery=1 %}
     {% compress js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}yoxview/yoxview-init.js"></script>
     {% block js %}{% endblock js%}
     {% endcompress %}
+    <script type="text/javascript" src="{{ STATIC_URL }}yoxview/yoxview-init.js"></script>
   </body>
 </html>
