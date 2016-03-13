@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load imagekit %}
+{% load thumbnail %}
 
 {% block title %}News{% if year %} {{ year|date:"Y" }}{% endif %}{% endblock title %}
 
@@ -7,7 +7,10 @@
   $(document).ready(function(){{% for article in articles %}{% if article.images.all %}
   $("#{{ article.headline|slugify }}-{{ article.date|slugify }}").yoxview({
   images: [{% for ArticleImage in article.images.all %}
-  { media: { src: '{{ ArticleImage.image.url }}', title: '{{ ArticleImage.caption }}' }},{% endfor %}
+    {% thumbnail ArticleImage.image '720' as sm %}
+    { media: { src: '{{ sm.url }}', title: '{{ ArticleImage.caption }}' }},
+    {% endthumbnail %}
+  {% endfor %}
   ]});{% endif %}{% endfor %}
   });
 </script>{% endblock js%}
@@ -25,7 +28,9 @@
   <div class="col-sm-3 col-md-5 text-center">
     {% if article.images.all %}
     <a href="" id="{{ article.headline|slugify }}-{{ article.date|slugify }}">
-      {% thumbnail '457x400' article.images.all.0.image crop=0 -- class="img-responsive center-block" %}
+      {% thumbnail article.images.all.0.image '400' as xs %}
+      <img src="{{ xs.url }}" class="img-responsive center-block" alt="" />
+      {% endthumbnail %}
     </a>
     {% else %}No image{% endif %}
   </div>
