@@ -4,7 +4,7 @@ from django.shortcuts import render
 from ddweb.apps.news.models import Article
 
 def newsLatest(request, **kwargs):
-    context = {'articles': Article.objects.all().order_by('date')}
+    context = {'articles': Article.objects.all()}
     return render(request, 'news.html', context)
 
 class NewsArchive(YearArchiveView):
