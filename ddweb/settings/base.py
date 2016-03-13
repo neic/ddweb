@@ -19,9 +19,9 @@ DEFAULT_APPS = [
 
 THIRD_PARTY_APPS = [
     'compressor',
-    'imagekit',
     'bootstrap3',
     'jfu',
+    'sorl.thumbnail',
 ]
 
 LOCAL_APPS = [

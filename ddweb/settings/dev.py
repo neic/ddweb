@@ -3,6 +3,7 @@ from ddweb.settings.base import * # pylint: disable=wildcard-import,unused-wildc
 
 DEBUG = True
 TEMPLATE_DEBUG = True
+THUMBNAIL_DEBUG = True
 
 SECRET_KEY = 'This.is.not.a.secret.key'
 
