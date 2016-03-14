@@ -20,6 +20,7 @@
     {% endcompress %}
   </head>
   <body>
+
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
@@ -48,13 +49,17 @@
       </div>
       {% block content %}(no content){% endblock %}
     </div>
+
     <nav class="navbar navbar-default navbar-static-top">
-      <div class="container navbar-text text-center">
-        <p>
-          &copy;2008-2016 <a href="/">Danish Decoration Ship Interior Consulting ApS.</a> All rights reserved. &middot; <a href="mailto:webmaster@danishdecoration.dk">Contact webmaster</a>
-        </p>
+      <div class="container">
+        <div class="navbar-text text-center">
+          <p>
+            &copy;2008-2016 <a href="/">Danish Decoration Ship Interior Consulting ApS.</a> All rights reserved. &middot; <a href="mailto:webmaster@danishdecoration.dk">Contact webmaster</a>
+          </p>
+        </div>
       </div>
     </nav>
+
     {% bootstrap_javascript jquery=1 %}
     {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}ekko-lightbox/dist/ekko-lightbox.js"></script>
