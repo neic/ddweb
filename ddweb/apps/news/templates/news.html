@@ -13,27 +13,30 @@
     <h6> {{ article.date }}</h6>
     <p>{{ article.description }}</p>
   </div>
-  <div class="col-sm-3 col-md-5 text-center">
-    {% thumbnail article.images.all.0.image '400x400' as xs %}
-    {% thumbnail article.images.all.0.image '720x720' as sm %}
-    <a href="{{ sm.url }}"
-       data-toggle="lightbox"
-       data-gallery="{{ article.headline|slugify }}-{{ article.date|slugify }}"
-       data-title="{{ article.images.all.0.image.caption }}">
-        <img src="{{ xs.url }}" class="img-responsive center-block" alt="{{ article.images.all.0.image.caption }}" />
-    </a>
-    {% endthumbnail %}
-    {% for Image in article.images.all|slice:"1:" %}
-    {% thumbnail Image.image '720x720' as sm %}
-    <div data-remote="{{ sm.url }}"
-         data-toggle="lightbox"
-         data-gallery="{{ article.headline|slugify }}-{{ article.date|slugify }}"
-         data-title="{{ Image.image.caption }}"></div>
-    {% endthumbnail %}
-    {% endfor %}
-    {% empty %}
-    <p class="hidden-xs text-center small">No image</p>
-    {% endthumbnail %}
+  <div class="col-sm-3 col-md-5">
+      {% for Image in article.images.all %}
+        {% thumbnail Image.image '720x720' as sm %}
+          {% if forloop.first %}
+            {% thumbnail Image.image '262x262' as xs %}
+              <a href="{{ sm.url }}"
+                 data-toggle="lightbox"
+                 data-gallery="{{ article.headline|slugify }}-{{ article.date|slugify }}"
+                 data-title="{{ Image.image.caption }}">
+                  <img src="{{ xs.url }}"
+                       class="img-responsive center-block img-thumbnail"
+                       alt="{{ Image.image.caption }}" />
+              </a>
+            {% endthumbnail %}
+          {% else %}
+            <div data-remote="{{ sm.url }}"
+                 data-toggle="lightbox"
+                 data-gallery="{{ article.headline|slugify }}-{{ article.date|slugify }}"
+                 data-title="{{ Image.image.caption }}"></div>
+          {% endif %}
+        {% endthumbnail %}
+      {% empty %}
+        <p class="hidden-xs text-center small">No image</p>
+      {% endfor %}
   </div>
 </div>
 <hr/>
