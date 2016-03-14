@@ -21,3 +21,6 @@
     vertical-align: middle;
     float: none;
 }
+.ekko-lightbox-nav-overlay a {
+    opacity: 1;
+}
