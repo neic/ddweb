@@ -16,6 +16,7 @@
     {% compress css %}
     <link type="text/less" rel="stylesheet" href="{% bootstrap_css_url %}" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style.css" />
+    <link type="text/less" rel="stylesheet" href="{{ STATIC_URL }}ekko-lightbox/ekko-lightbox.less" />
     {% endcompress %}
   </head>
   <body>
@@ -56,8 +57,16 @@
     </nav>
     {% bootstrap_javascript jquery=1 %}
     {% compress js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}ekko-lightbox/dist/ekko-lightbox.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function ($) {
+        $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+          event.preventDefault();
+          $(this).ekkoLightbox();
+        });
+      });
+    </script>
     {% block js %}{% endblock js%}
     {% endcompress %}
-    <script type="text/javascript" src="{{ STATIC_URL }}yoxview/yoxview-init.js"></script>
   </body>
 </html>
