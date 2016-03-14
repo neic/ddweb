@@ -14,8 +14,8 @@
     <p>{{ article.description }}</p>
   </div>
   <div class="col-sm-3 col-md-5 text-center">
-    {% thumbnail article.images.all.0.image '400' as xs %}
-    {% thumbnail article.images.all.0.image '720' as sm %}
+    {% thumbnail article.images.all.0.image '400x400' as xs %}
+    {% thumbnail article.images.all.0.image '720x720' as sm %}
     <a href="{{ sm.url }}"
        data-toggle="lightbox"
        data-gallery="{{ article.headline|slugify }}-{{ article.date|slugify }}"
@@ -24,7 +24,7 @@
     </a>
     {% endthumbnail %}
     {% for Image in article.images.all|slice:"1:" %}
-    {% thumbnail Image.image '720' as sm %}
+    {% thumbnail Image.image '720x720' as sm %}
     <div data-remote="{{ sm.url }}"
          data-toggle="lightbox"
          data-gallery="{{ article.headline|slugify }}-{{ article.date|slugify }}"

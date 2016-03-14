@@ -95,7 +95,7 @@
   </div>
   <div class="col-xs-12 col-sm-3 vertical-align">
       {% thumbnail project.images.all.0.image '262x262' as xs %}
-      {% thumbnail project.images.all.0.image '720' as sm %}
+      {% thumbnail project.images.all.0.image '720x720' as sm %}
       <a href="{{ sm.url }}"
          data-toggle="lightbox"
          data-gallery="{{ project.ship|slugify }}-{{ project.year|slugify }}"
@@ -104,7 +104,7 @@
       </a>
       {% endthumbnail %}
       {% for Image in project.images.all|slice:"1:" %}
-      {% thumbnail Image.image '720' as sm %}
+      {% thumbnail Image.image '720x720' as sm %}
       <div data-remote="{{ sm.url }}"
            data-toggle="lightbox"
            data-gallery="{{ project.ship|slugify }}-{{ project.year|slugify }}"
