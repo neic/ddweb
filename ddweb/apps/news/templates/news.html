@@ -3,18 +3,6 @@
 
 {% block title %}News{% if year %} {{ year|date:"Y" }}{% endif %}{% endblock title %}
 
-{% block js %}<script type="text/javascript">
-  $(document).ready(function(){{% for article in articles %}{% if article.images.all %}
-  $("#{{ article.headline|slugify }}-{{ article.date|slugify }}").yoxview({
-  images: [{% for ArticleImage in article.images.all %}
-    {% thumbnail ArticleImage.image '720' as sm %}
-    { media: { src: '{{ sm.url }}', title: '{{ ArticleImage.caption }}' }},
-    {% endthumbnail %}
-  {% endfor %}
-  ]});{% endif %}{% endfor %}
-  });
-</script>{% endblock js%}
-
 {% block content %}
 {% for article in articles %}
 <div class="row">
@@ -26,13 +14,26 @@
     <p>{{ article.description }}</p>
   </div>
   <div class="col-sm-3 col-md-5 text-center">
-    {% if article.images.all %}
-    <a href="" id="{{ article.headline|slugify }}-{{ article.date|slugify }}">
-      {% thumbnail article.images.all.0.image '400' as xs %}
-      <img src="{{ xs.url }}" class="img-responsive center-block" alt="" />
-      {% endthumbnail %}
+    {% thumbnail article.images.all.0.image '400' as xs %}
+    {% thumbnail article.images.all.0.image '720' as sm %}
+    <a href="{{ sm.url }}"
+       data-toggle="lightbox"
+       data-gallery="{{ article.headline|slugify }}-{{ article.date|slugify }}"
+       data-title="{{ article.images.all.0.image.caption }}">
+        <img src="{{ xs.url }}" class="img-responsive center-block" alt="{{ article.images.all.0.image.caption }}" />
     </a>
-    {% else %}No image{% endif %}
+    {% endthumbnail %}
+    {% for Image in article.images.all|slice:"1:" %}
+    {% thumbnail Image.image '720' as sm %}
+    <div data-remote="{{ sm.url }}"
+         data-toggle="lightbox"
+         data-gallery="{{ article.headline|slugify }}-{{ article.date|slugify }}"
+         data-title="{{ Image.image.caption }}"></div>
+    {% endthumbnail %}
+    {% endfor %}
+    {% empty %}
+    No image
+    {% endthumbnail %}
   </div>
 </div>
 <hr/>
