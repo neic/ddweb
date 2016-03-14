@@ -4,6 +4,3 @@
 [submodule "static-src/ekko-lightbox"]
 	path = static-src/ekko-lightbox
 	url = https://github.com/ashleydw/lightbox.git
-[submodule "/Users/neic/Documents/Danish-Decoration/ddweb/static-src/ekko-lightbox/"]
-	path = static-src/ekko-lightbox
-	url = https://github.com/ashleydw/lightbox.git
