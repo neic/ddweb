@@ -1,26 +1,6 @@
 {% extends 'base.html' %}
 {% load thumbnail %}
 
-{% block js %}<script type="text/javascript">
-  $(document).ready(function() { {% for project in ongoing %}{% if project.images.all %}
-  $("#{{ project.ship|slugify }}-{{ project.year|slugify }}").yoxview({
-  images: [{% for Image in project.images.all %}
-    {% thumbnail Image.image '720' as sm %}
-    { media: { src: '{{ sm.url }}', title: '{{ Image.caption }}' }},
-    {% endthumbnail %}
-  {% endfor %}
-  ]});{% endif %}{% endfor %}
-  {% for project in finished %}{% if project.images.all %}
-  $("#{{ project.ship|slugify }}-{{ project.year|slugify }}").yoxview({
-  images: [{% for Image in project.images.all %}
-    {% thumbnail Image.image '720' as sm %}
-    { media: { src: '{{ sm.url }}', title: '{{ Image.caption }}' }},
-    {% endthumbnail %}
-  {% endfor %}
-  ]});{% endif %}{% endfor %}
-  });
-</script>{% endblock js%}
-
 {% block title %}References{% endblock title%}
 
 {% block content %}
@@ -59,13 +39,26 @@
     <p>{{ project.description }}</p>
   </div>
   <div class="col-xs-12 col-sm-3 vertical-align">
-    {% if project.images.all %}
-    <a href="" id="{{ project.ship|slugify }}-{{ project.year|slugify }}">
       {% thumbnail project.images.all.0.image '262x262' as xs %}
-      <img src="{{ xs.url }}" class="img-responsive center-block" alt="" />
+      {% thumbnail project.images.all.0.image '720' as sm %}
+      <a href="{{ sm.url }}"
+         data-toggle="lightbox"
+         data-gallery="{{ project.ship|slugify }}-{{ project.year|slugify }}"
+         data-title="{{ project.images.all.0.image.caption }}">
+          <img src="{{ xs.url }}" class="img-responsive center-block" alt="{{ project.images.all.0.image.caption }}" />
+      </a>
       {% endthumbnail %}
-    </a>
-    {% else %}<p class="text-center  small">No images</p>{% endif %}
+      {% for Image in project.images.all|slice:"1:" %}
+      {% thumbnail Image.image '720' as sm %}
+      <div data-remote="{{ sm.url }}"
+           data-toggle="lightbox"
+           data-gallery="{{ project.ship|slugify }}-{{ project.year|slugify }}"
+           data-title="{{ project.images.all.0.image.caption }}"></div>
+      {% endthumbnail %}
+      {% endfor %}
+      {% empty %}
+      <p class="text-center small">No images</p>
+      {% endthumbnail %}
   </div>
 </div>
 <hr />
@@ -101,13 +94,26 @@
     <p>{{ project.description }}</p>
   </div>
   <div class="col-xs-12 col-sm-3 vertical-align">
-    {% if project.images.all %}
-    <a href="" id="{{ project.ship|slugify }}-{{ project.year|slugify }}">
       {% thumbnail project.images.all.0.image '262x262' as xs %}
-      <img src="{{ xs.url }}" class="img-responsive center-block" alt="" />
+      {% thumbnail project.images.all.0.image '720' as sm %}
+      <a href="{{ sm.url }}"
+         data-toggle="lightbox"
+         data-gallery="{{ project.ship|slugify }}-{{ project.year|slugify }}"
+         data-title="{{ project.images.all.0.image.caption }}">
+          <img src="{{ xs.url }}" class="img-responsive center-block" alt="{{ project.images.all.0.image.caption }}" />
+      </a>
       {% endthumbnail %}
-    </a>
-    {% else %}<p class="text-center  small">No images</p>{% endif %}
+      {% for Image in project.images.all|slice:"1:" %}
+      {% thumbnail Image.image '720' as sm %}
+      <div data-remote="{{ sm.url }}"
+           data-toggle="lightbox"
+           data-gallery="{{ project.ship|slugify }}-{{ project.year|slugify }}"
+           data-title="{{ project.images.all.0.image.caption }}"></div>
+      {% endthumbnail %}
+      {% endfor %}
+      {% empty %}
+      <p class="text-center small">No images</p>
+      {% endthumbnail %}
   </div>
 </div>
 <hr />
