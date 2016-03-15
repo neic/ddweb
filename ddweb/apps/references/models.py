@@ -1,4 +1,4 @@
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes import fields
 from django.db import models
 
 from ddweb.apps.images.models import Image
@@ -16,7 +16,7 @@ class Reference(models.Model):
     ongoing = models.BooleanField(default=True)
     beforeDD = models.BooleanField(default=False)
 
-    images = generic.GenericRelation(Image)
+    images = fields.GenericRelation(Image)
 
     class Meta:
         ordering = ['-year', '-id']

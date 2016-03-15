@@ -1,5 +1,5 @@
 import os
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes import fields
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.text import slugify
@@ -14,7 +14,7 @@ def file_name(instance, filename):
 class Image(models.Model):
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
-    associatedObject = generic.GenericForeignKey('content_type', 'object_id')
+    associatedObject = fields.GenericForeignKey('content_type', 'object_id')
 
     image = models.ImageField(upload_to=file_name)
     caption = models.CharField(max_length=200, blank=True)
