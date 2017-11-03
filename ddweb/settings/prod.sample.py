@@ -30,5 +30,5 @@ DATABASES = {
 WSGI_APPLICATION = 'ddweb.wsgi.application'
 
 
-MEDIA_ROOT = '/var/www/danishdecoration.dk/media'
-STATIC_ROOT = '/var/www/danishdecoration.dk/static'
+MEDIA_ROOT = '/tank/www/danishdecoration.dk/media'
+STATIC_ROOT = '/tank/www/danishdecoration.dk/static'
