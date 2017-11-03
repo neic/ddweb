@@ -1,9 +1,10 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
-from ddweb.apps.news.views import NewsArchive
+from ddweb.apps.news.views import newsLatest, NewsArchive
 
-urlpatterns = patterns('',
-                       url(r'^$', 'ddweb.apps.news.views.newsLatest',
-                           name='news'),
-                       url(r'^(?P<year>\d{4})/$', NewsArchive.as_view(),
-                           name='news_archive'))
+urlpatterns = [
+    url(r'^$', newsLatest,
+        name='news'),
+    url(r'^(?P<year>\d{4})/$', NewsArchive.as_view(),
+        name='news_archive')
+    ]

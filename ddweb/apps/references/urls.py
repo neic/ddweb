@@ -1,5 +1,8 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
-urlpatterns = patterns('',
-                       url(r'^$', 'ddweb.apps.references.views.references',
-                           name='references'))
+from ddweb.apps.references.views import references
+
+urlpatterns = [
+    url(r'^$', references,
+        name='references')
+    ]
