@@ -18,7 +18,6 @@ DEFAULT_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'compressor',
     'bootstrap3',
     'jfu',
     'sorl.thumbnail',
@@ -92,16 +91,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
-    'less.finders.LessFinder',
 )
-
-COMPRESS_PRECOMPILERS = (
-    ('text/less', 'lessc {infile} {outfile}'),
-)
-
-COMPRESS_ENABLED = True
-
 
 # Bootstrap3
 # ----------
@@ -117,7 +107,7 @@ BOOTSTRAP3 = {
     # The css\less is from static-src/bootstrap via static-src/bootstrap.less.
     # This way it is possible to customize the css\less, without all the
     # dependencies need to compile the whole bootstrap.
-    'css_url': STATIC_URL + 'bootstrap.less',
+    'css_url': STATIC_URL + 'style.min.css',
 }
 
 # Templates
