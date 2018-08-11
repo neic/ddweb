@@ -1,6 +1,6 @@
 from ddweb.settings.base import * # pylint: disable=wildcard-import,unused-wildcard-import
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = False
 
 ADMINS = (
@@ -19,13 +19,11 @@ ALLOWED_HOSTS = ['danishdecoration.dk',
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': "",
-        'USER': "",
-        'PASSWORD': "",
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': "postgres",
+        'USER': "postgres",
+        'HOST': "db",
+        'PORT': 5432,
     }
 }
 
@@ -33,5 +31,5 @@ DATABASES = {
 WSGI_APPLICATION = 'ddweb.wsgi.application'
 
 
-MEDIA_ROOT = '/tank/www/danishdecoration.dk/media'
-STATIC_ROOT = '/tank/www/danishdecoration.dk/static'
+MEDIA_ROOT = '/media'
+STATIC_ROOT = '/static'
