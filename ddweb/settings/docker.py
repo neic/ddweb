@@ -20,9 +20,10 @@ ALLOWED_HOSTS = ['danishdecoration.dk',
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "postgres",
-        'USER': "postgres",
-        'HOST': "db",
+        'NAME': os.environ['POSTGRES_USER'],
+        'USER': os.environ['POSTGRES_USER'],
+        'PASSWORD': os.environ['POSTGRES_PASSWORD'],
+        'HOST': os.environ['POSTGRES_HOST'],
         'PORT': 5432,
     }
 }

@@ -16,12 +16,14 @@ services:
     volumes:
       - .:/code
       - static:/static
-    environment:
-      - PGSQL_HOST=db
+    env_file:
+      - db.env
     depends_on:
       - db
   db:
     image: postgres
+    env_file:
+      - db.env
 
 volumes:
   static:
