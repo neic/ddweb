@@ -40,9 +40,13 @@ RUN set -ex \
     # Finally delete .build-deps to save space.
     && apk del .build-deps
 
+
+# Install psql used in docker-entrypoint.sh to check for db availability in
+# docker-entrypoint.sh.
 RUN apk --update add postgresql-client && rm -rf /var/cache/apk/*
 
-# Copy your application code to the container (make sure you create a .dockerignore file if any large files or directories should be excluded)
+
+# Copy application code to the container.
 RUN mkdir /code/
 WORKDIR /code/
 ADD . /code/
@@ -50,14 +54,14 @@ ADD . /code/
 
 EXPOSE 8000
 
+
 ENV DJANGO_SETTINGS_MODULE=ddweb.settings.docker
+
 
 
 ENV DJANGO_MANAGEPY_MIGRATE=on
 ENV DJANGO_MANAGEPY_COLLECTSTATIC=on
-
 ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
-# Start uWSGI
-
+# Start gnunicorn
 CMD ["/venv/bin/gunicorn", "ddweb.wsgi", "-b 0.0.0.0:8000"]
