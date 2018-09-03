@@ -21,6 +21,7 @@ THIRD_PARTY_APPS = [
     'bootstrap3',
     'jfu',
     'sorl.thumbnail',
+    'django_instagram',
 ]
 
 LOCAL_APPS = [

@@ -1,62 +1,25 @@
 {% extends 'base.html' %}
-{% load thumbnail %}
+{% load instagram_client %}
 
-{% block title %}News{% if year %} {{ year|date:"Y" }}{% endif %}{% endblock title %}
+{% block title %}News{% endblock title %}
 
 {% block content %}
-{% for article in articles %}
-<div class="row">
-  <div class="col-sm-12">
-    <h3>{{ article.headline }}</h3>
-  </div>
-  <div class="col-sm-9 col-md-7">
-    <h6> {{ article.date }}</h6>
-    <p>{{ article.description }}</p>
-  </div>
-  <div class="col-sm-3 col-md-5">
-    {% if article.images.all %}
-      <div class="carousel slide">
-        <div class="carousel-inner">
-          {% for Image in article.images.all %}
-            {% thumbnail Image.image '720x720' as sm %}
-              {% if forloop.counter <= 3 %}
-                <div class="item{% if forloop.first %} active{% endif %}">
-                  <a href="{{ sm.url }}"
-                     data-toggle="lightbox"
-                     data-gallery="{{ article.headline|slugify }}-{{ article.date|slugify }}"
-                     data-title="{{ Image.image.caption }}">
-                      {% thumbnail Image.image '262x262' crop='center' as xs %}
-                      <img src="{{ xs.url }}"
-                           class="img-responsive center-block img-thumbnail"
-                           alt="{{ Image.image.caption }}" />
-                    {% endthumbnail %}
-                  </a>
+{% instagram_user_recent_media Danish_Decoration %}
+{% for media in recent_media %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="thumbnail">
+                <a href="//instagram.com/p/{{ media.shortcode }}" target="_blank">
+                    <img src="{{ media.thumbnail_src }}"
+                         class="img-responsive center-block img-thumbnail"
+                         alt="{{ media.edge_media_to_caption.edges.0.node.text }}" />
+                </a>
+                <div class="caption center-block" style="max-width: 640px">
+                    <p>{{ media.edge_media_to_caption.edges.0.node.text }}</p>
                 </div>
-              {% else %}
-                <div data-remote="{{ sm.url }}"
-                     data-toggle="lightbox"
-                     data-gallery="{{ article.headline|slugify }}-{{ article.date|slugify }}"
-                     data-title="{{ Image.image.caption }}"></div>
-              {% endif %}
-            {% endthumbnail %}
-          {% endfor %}
+            </div>
         </div>
-      </div>
-    {% else %}
-      <p class="hidden-xs text-center small">No image</p>
-    {% endif %}
-  </div>
-</div>
+    </div>
 <hr/>
 {% endfor %}
-<p>
-Previous news:
-{% if previous_year %}
-<a href="/news/{{ previous_year|date:"Y" }}">{{ previous_year|date:"Y" }}</a>
-{% elif not year %}
-<a href="/news/{{ date_list.last|date:"Y" }}">{{ date_list.last|date:"Y" }}</a>
-{% else %}
-None
-{% endif %}
-</p>
 {% endblock content%}
