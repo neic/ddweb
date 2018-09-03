@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load instagram_client %}
+{% load instagram_client news %}
 
 {% block title %}News{% endblock title %}
 
@@ -15,7 +15,8 @@
                          alt="{{ media.edge_media_to_caption.edges.0.node.text }}" />
                 </a>
                 <div class="caption center-block" style="max-width: 640px">
-                    <p>{{ media.edge_media_to_caption.edges.0.node.text }}</p>
+                    <p class="lead">{{ media.edge_media_to_caption.edges.0.node.text }}</p>
+                    <p><time datetime="{{ media.taken_at_timestamp|fromtimestamp|date:"c" }}" title="{{ media.taken_at_timestamp|fromtimestamp|date:"c" }}">{{ media.taken_at_timestamp|fromtimestamp|timesince }}</time> ago.</p>
                 </div>
             </div>
         </div>
