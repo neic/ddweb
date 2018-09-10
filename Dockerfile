@@ -23,6 +23,8 @@ RUN set -ex \
             # Pillow dependencies
             zlib-dev \
             jpeg-dev \
+            # lxml dependencies
+            libxslt-dev \
     # Create a python virtual environment, update pip and install requirements
     # from requirements.txt
     && python3 -m venv /venv \
