@@ -1,9 +1,0 @@
-django>=1.11,<1.11.99
-pytz>=2015.2
-pillow>=2.6
-sorl-thumbnail>=12.3
-git+https://github.com/CalPolyResDev/django-jfu#egg=django-jfu
-django-bootstrap3>=6.2.2
-gunicorn
-psycopg2
-django-instagram
