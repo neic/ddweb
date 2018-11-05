@@ -17,6 +17,7 @@ Pillow = "*"
 [dev-packages]
 black = "==18.9b0"  # Pinned to latest version as workaround for https://github.com/pypa/pipenv/issues/1760
 pre-commit = "*"
+"flake8" = "*"
 
 [requires]
 python_version = "3.6"
