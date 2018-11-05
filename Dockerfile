@@ -32,12 +32,15 @@ RUN pipenv install --deploy
 
 
 # Copy application code to the container.
-ADD . /code/
+COPY docker-entrypoint.sh .
+COPY manage.py .
+COPY ddweb ./ddweb
+COPY templates ./templates
+COPY static-src ./static-src
 
 EXPOSE 8000
 
 ENV DJANGO_SETTINGS_MODULE=ddweb.settings.docker
-
 
 
 ENV DJANGO_MANAGEPY_MIGRATE=on

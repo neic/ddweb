@@ -1,0 +1,11 @@
+.git
+.DS_Store
+.gitignore
+README.md
+Dockerfile
+*.env
+media
+venv
+
+  # To prevent storing dev/temporary container data
+*.sqllite
