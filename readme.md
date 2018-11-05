@@ -13,6 +13,7 @@ git clone --recursive https://github.com/neic/ddweb.git
 cd ddweb
 pipenv install
 pipenv shell
+pre-commit install
 ./manage.py migrate --settings=ddweb.settings.dev
 ./manage.py createsuperuser --settings=ddweb.settings.dev
 ```
