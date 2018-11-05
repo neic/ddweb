@@ -3,17 +3,16 @@
 ## Udviklingsmiljø
 
 Det er en forudsætning at maskinen har en fungerende python (3.3 eller nyere)
-installation med `pip`.
+installation med `pipenv`.
 
 Brug nedstående til at klone git-repoet, sættet et virtualenv op, installere
 alle pakker og oprette en database.
 
 ```shell
 git clone --recursive https://github.com/neic/ddweb.git
-cd web
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+cd ddweb
+pipenv install
+pipenv shell
 ./manage.py migrate --settings=ddweb.settings.dev
 ./manage.py createsuperuser --settings=ddweb.settings.dev
 ```
@@ -25,6 +24,13 @@ udviklingskonfigurationen skriv:
 
 ```shell
 ./manage.py runserver --settings=ddweb.settings.dev
+```
+
+## Docker
+For at udgive et ny docker image:
+```
+docker build -t neic/ddweb .
+docker push neic/ddweb
 ```
 
 ## LESS og CSS
