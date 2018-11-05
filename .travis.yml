@@ -1,0 +1,32 @@
+language: python
+
+sudo: required
+dist: xenial
+
+services:
+  - docker
+
+env:
+  global:
+    - DJANGO_SETTINGS_MODULE=ddweb.settings.dev
+    - PIPENV_IGNORE_VIRTUALENVS=1
+
+install:
+  - "pip install pipenv"
+  - "pipenv install --dev --deploy"
+  - "pipenv run pip install coverage"
+
+python:
+  - "3.6"
+  - "3.7"
+  - "3.8-dev"
+
+script:
+  - "pipenv run coverage run --source=ddweb manage.py test"
+  - "pipenv run black --check --exclude=static-src --verbose ."
+  - "pipenv run flake8 --exclude=static-src"
+  - "docker build -t neic/ddweb ."
+
+after_success:
+  - "pipenv run pip install coveralls"
+  - "pipenv run coveralls"

@@ -1,5 +1,8 @@
 # Danish Decorations webside
 
+[![Build Status](https://travis-ci.org/neic/ddweb.svg?branch=master)](https://travis-ci.org/neic/ddweb)
+[![Coverage Status](https://coveralls.io/repos/github/neic/ddweb/badge.svg?branch=master)](https://coveralls.io/github/neic/ddweb?branch=master)
+
 ## Udviklingsmiljø
 
 Det er en forudsætning at maskinen har en fungerende python (3.3 eller nyere)
