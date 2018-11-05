@@ -9,25 +9,37 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Reference',
+            name="Reference",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('ship', models.CharField(max_length=200)),
-                ('owner', models.CharField(max_length=200)),
-                ('place', models.CharField(max_length=200)),
-                ('constructionType', models.CharField(choices=[('n', 'New Building'), ('r', 'Refurbishment')], default='r', max_length=1)),
-                ('year', models.PositiveIntegerField(blank=True, null=True)),
-                ('description', models.TextField(blank=True)),
-                ('ongoing', models.BooleanField(default=True)),
-                ('beforeDD', models.BooleanField(default=False)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("ship", models.CharField(max_length=200)),
+                ("owner", models.CharField(max_length=200)),
+                ("place", models.CharField(max_length=200)),
+                (
+                    "constructionType",
+                    models.CharField(
+                        choices=[("n", "New Building"), ("r", "Refurbishment")],
+                        default="r",
+                        max_length=1,
+                    ),
+                ),
+                ("year", models.PositiveIntegerField(blank=True, null=True)),
+                ("description", models.TextField(blank=True)),
+                ("ongoing", models.BooleanField(default=True)),
+                ("beforeDD", models.BooleanField(default=False)),
             ],
-            options={
-                'ordering': ['-year', '-id'],
-            },
-        ),
+            options={"ordering": ["-year", "-id"]},
+        )
     ]

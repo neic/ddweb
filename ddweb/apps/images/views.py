@@ -8,44 +8,47 @@ from jfu.http import upload_receive, UploadResponse, JFUResponse
 
 from ddweb.apps.images.models import Image
 
-@permission_required('image.add_image')
+
+@permission_required("image.add_image")
 def uploadForm(request, content_type, object_id):
     ct = ContentType.objects.get(model=content_type)
     associatedObject = ct.get_object_for_this_type(pk=object_id)
-    context = {'associatedObject' : associatedObject,
-               'content_type' : content_type,
-               'object_id' : object_id,}
-    return render(request, 'upload.html', context)
+    context = {
+        "associatedObject": associatedObject,
+        "content_type": content_type,
+        "object_id": object_id,
+    }
+    return render(request, "upload.html", context)
+
 
 @require_POST
-@permission_required('image.add_image', raise_exception=True)
+@permission_required("image.add_image", raise_exception=True)
 def upload(request):
     # The assumption here is that jQuery File Upload
     # has been configured to send files one at a time.
     # If multiple files can be uploaded simulatenously,
     # 'file' may be a list of files.
     image = upload_receive(request)
-    content_type = ContentType.objects.get(model=request.POST['content_type'])
-    object_id = request.POST['object_id']
+    content_type = ContentType.objects.get(model=request.POST["content_type"])
+    object_id = request.POST["object_id"]
     instance = Image(image=image, content_type=content_type, object_id=object_id)
     instance.save()
 
     basename = os.path.basename(instance.image.path)
 
     file_dict = {
-        'name' : basename,
-        'size' : image.size,
-
-        'url': instance.image.url,
-
-        'deleteUrl': reverse('jfu_delete', kwargs={'pk': instance.pk}),
-        'deleteType': 'POST',
+        "name": basename,
+        "size": image.size,
+        "url": instance.image.url,
+        "deleteUrl": reverse("jfu_delete", kwargs={"pk": instance.pk}),
+        "deleteType": "POST",
     }
 
     return UploadResponse(request, file_dict)
 
+
 @require_POST
-@permission_required('image.delete_image', raise_exception=True)
+@permission_required("image.delete_image", raise_exception=True)
 def upload_delete(request, pk):
     success = True
     try:
