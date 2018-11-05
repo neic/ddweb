@@ -6,7 +6,8 @@
 FROM python:3.6-slim
 ENV PYTHONUNBUFFERED 1
 
-ADD Pipfile* /
+WORKDIR /code/
+COPY Pipfile* /code/
 
 RUN set -ex \
   # The -slim version of the debian image deletes man-pages to free space. This
@@ -23,13 +24,15 @@ RUN set -ex \
   postgresql-client \
   # clean up after apt-get and man-pages
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/man/?? /usr/share/man/??_* \
-  && pip install pipenv
-RUN pipenv install --deploy --system
+  && pip3 install pipenv
+
+  # One might assume that --system should be used, but
+  # https://github.com/pypa/pipenv/pull/2762 recommends against it.
+RUN pipenv install --deploy
 
 
 # Copy application code to the container.
 ADD . /code/
-WORKDIR /code/
 
 EXPOSE 8000
 
@@ -42,4 +45,4 @@ ENV DJANGO_MANAGEPY_COLLECTSTATIC=on
 ENTRYPOINT ["/code/docker-entrypoint.sh"]
 
 # Start gnunicorn
-CMD ["/venv/bin/gunicorn", "ddweb.wsgi", "-b 0.0.0.0:8000"]
+CMD ["pipenv", "run", "gunicorn", "ddweb.wsgi", "-b 0.0.0.0:8000"]
