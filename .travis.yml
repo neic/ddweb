@@ -1,32 +1,61 @@
 language: python
 
-sudo: required
-dist: xenial
+# sudo: required # deprecated since 2018-10-04
+dist: xenial # experimental
 
 services:
   - docker
+
+cache: pip
 
 env:
   global:
     - DJANGO_SETTINGS_MODULE=ddweb.settings.dev
     - PIPENV_IGNORE_VIRTUALENVS=1
 
-install:
-  - "pip install pipenv"
-  - "pipenv install --dev --deploy"
-  - "pipenv run pip install coverage"
-
 python:
   - "3.6"
   - "3.7"
   - "3.8-dev"
 
+stages:
+  - test
+  - name: deploy
+    if: branch = master
+
+before_install:
+  - "pip install pipenv"
+  - "pipenv run pip install coverage coveralls"
+
+install:
+    - "pipenv install --dev --deploy"
+
 script:
   - "pipenv run coverage run --source=ddweb manage.py test"
-  - "pipenv run black --check --exclude=static-src --verbose ."
-  - "pipenv run flake8 --exclude=static-src"
-  - "docker build -t neic/ddweb ."
-
 after_success:
-  - "pipenv run pip install coveralls"
   - "pipenv run coveralls"
+
+matrix: # `jobs` is a synonym
+  fast_finish: true
+  allow_failues:
+    - python: "3.8-dev"
+  include:
+    - stage: test
+      name: "Lint"
+      script:
+        - "pipenv run black --check --exclude=static-src --verbose ."
+        - "pipenv run flake8 --exclude=static-src"
+      after_success: skip
+    - stage: deploy
+      install: skip
+      after_success: skip
+      script:
+      - "docker build -t neic/ddweb ."
+      deploy:
+        skip_cleanup: true
+        provider: script
+        script:
+          - 'echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin'
+          - "docker push neic/ddweb"
+        on:
+          tags: true
