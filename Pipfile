@@ -9,7 +9,7 @@ sorl-thumbnail = "*"
 django-jfu = {git = "https://github.com/CalPolyResDev/django-jfu"}
 "django-bootstrap3" = "*"
 gunicorn = "*"
-"psycopg2" = "*"
+"psycopg2-binary" = "<2.9.0" # psycopg<=2.9 does not work with django<3.0 https://code.djangoproject.com/ticket/32856
 django-instagram = "*"
 Django = "<1.11.99,>=1.11"
 Pillow = "*"
@@ -20,4 +20,4 @@ pre-commit = "*"
 "flake8" = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"

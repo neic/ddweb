@@ -3,18 +3,10 @@
   # to installing from source which is very time consuming. See
   # https://github.com/pypa/manylinux/issues/37 and
   # https://github.com/docker-library/docs/issues/904
-FROM python:3.6-slim
+FROM python:3.7
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /code/
-COPY Pipfile* /code/
-
 RUN set -ex \
-  # The -slim version of the debian image deletes man-pages to free space. This
-  # unfortunately causes some packages to fail to install. See
-  # https://github.com/debuerreotype/debuerreotype/issues/10 As a work-around we
-  # add the missing directories for postgresql-client.
-  && mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
   && apt-get -y update \
   && apt-get -y install --no-install-recommends \
   # git is needed for python packages with `… = {git = …}` in Pipfile. It pulls a
@@ -26,8 +18,11 @@ RUN set -ex \
   && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/man/?? /usr/share/man/??_* \
   && pip3 install pipenv
 
-  # One might assume that --system should be used, but
-  # https://github.com/pypa/pipenv/pull/2762 recommends against it.
+WORKDIR /code/
+COPY Pipfile* /code/
+
+# One might assume that --system should be used, but
+# https://github.com/pypa/pipenv/pull/2762 recommends against it.
 RUN pipenv install --deploy
 
 
