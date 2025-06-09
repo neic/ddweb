@@ -1,6 +1,0 @@
-[submodule "static-src/bootstrap"]
-	path = static-src/bootstrap
-	url = https://github.com/twbs/bootstrap
-[submodule "static-src/ekko-lightbox"]
-	path = static-src/ekko-lightbox
-	url = https://github.com/ashleydw/lightbox.git
